@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'dj_rest_auth',
     'dj_rest_auth.registration',
-    'corsheaders'
+    'corsheaders',
+    'allauth.socialaccount.providers.google'
 ]
 
 MIDDLEWARE = [
@@ -169,3 +170,22 @@ else:
         "http://localhost:3000/",
         "http://127.0.0.1:3000/",
     ]
+
+
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "APP": {
+            "client_id": "",  # TODO: Add your client id
+            "secret": "",     # TODO: Add your secret
+            "key": "",
+        },
+        "SCOPE": [
+            "profile",
+            "email",
+        ],
+        "AUTH_PARAMS": {
+            "access_type": "online",
+        },
+        "VERIFIED_EMAIL": True,
+    },
+}

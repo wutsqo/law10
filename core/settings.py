@@ -211,4 +211,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Enable compression and caching features of whitenoise.
 # You can remove this if it causes problems on your setup.
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

@@ -216,9 +216,6 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
-# Make sure the directories exist to prevent errors when doing `collectstatic`.
-for directory in [*STATICFILES_DIRS, STATIC_ROOT]:
-    directory.mkdir(exist_ok=True)
 
 # Enable compression and caching features of whitenoise.
 # You can remove this if it causes problems on your setup.

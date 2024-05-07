@@ -202,21 +202,13 @@ SOCIALACCOUNT_PROVIDERS = {
     },
 }
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'expenseswebsite', 'static'),
+)
 
-STATIC_URL = '/static/'
-
-# This is the directory for storing `collectstatic` results.
-# This shouldn't be included in your Git repository.
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-# You can use this directory to store project-wide static files.
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',
-]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 # Enable compression and caching features of whitenoise.
 # You can remove this if it causes problems on your setup.
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

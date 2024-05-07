@@ -14,6 +14,7 @@ import os
 from datetime import timedelta
 from pathlib import Path
 from dotenv import load_dotenv
+import dj_database_url
 
 load_dotenv()
 
@@ -29,9 +30,9 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", ".vercel.app"]
 
 
 # Application definition
@@ -87,7 +88,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'core.wsgi.application'
+WSGI_APPLICATION = 'core.wsgi.app'
 
 
 # Database
@@ -99,6 +100,10 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+if os.getenv("DATABASE_URL"):
+    DATABASES["default"] = dj_database_url.config(
+        conn_max_age=600, ssl_require=True)
 
 
 # Password validation
@@ -194,3 +199,7 @@ SOCIALACCOUNT_PROVIDERS = {
         "VERIFIED_EMAIL": True,
     },
 }
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "ui/static")]
+STATIC_URL = "static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "ui/staticfiles")
